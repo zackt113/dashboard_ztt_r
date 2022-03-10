@@ -6,7 +6,7 @@ library(plotly)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
-movie <- read.csv('data/movies_clean_df.csv') |> 
+movie <- read.csv('data/movies_clean_df.csv') %>% 
   setNames(c("Index", "Title", "Major_Genre","Duration","Year", "US_Revenue", "IMDB_Rating", 
              "MPAA_Rating"))
 
@@ -33,8 +33,8 @@ app$callback(
   output('plot-area', 'figure'),
   list(input('year_range', 'value')),
   function(year) {
-    p <- movie |> 
-      filter(Year >= year[1] & Year <= year[2]) |> 
+    p <- movie %>% 
+      filter(Year >= year[1] & Year <= year[2]) %>% 
         ggplot(aes(x = Duration, 
                    y = IMDB_Rating, 
                    color = Major_Genre)) +
