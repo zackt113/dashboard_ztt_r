@@ -3,12 +3,13 @@ library(dashHtmlComponents)
 library(dashCoreComponents)
 library(ggplot2)
 library(plotly)
+library(dplyr)
 
 app <- Dash$new(external_stylesheets = dbcThemes$BOOTSTRAP)
 
 movie <- read.csv('data/movies_clean_df.csv') %>% 
-  setNames(c("Index", "Title", "Major_Genre","Duration","Year", "US_Revenue", "IMDB_Rating", 
-             "MPAA_Rating"))
+  setNames(c("Index", "Title", "Major_Genre","Duration","Year", "US_Revenue",
+             "IMDB_Rating", "MPAA_Rating"))
 
 
 app$layout(
